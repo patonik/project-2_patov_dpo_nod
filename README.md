@@ -20,5 +20,24 @@
 </a>
 </details>
 
+## CRUD-операции
+
+Новые команды:
+- `insert into <table> values (<val1>, <val2>, ...)` - Добавить запись (без ID).
+- `select from <table> [where <col> = <val>]` - Выбрать записи.
+- `update <table> set <col> = <new_val> where <col> = <val>` - Обновить.
+- `delete from <table> where <col> = <val>` - Удалить.
+- `info <table>` - Инфо о таблице.
+
+Пример:
+<details>
+<summary>Click to play the recording</summary>
+
+<a title="Labyrinth of Treasures Demo" href="https://asciinema.org/a/f77820xJ0Lp50UddEzGkn3rba?autoplay=1" target="_blank">
+<img src="https://asciinema.org/a/f77820xJ0Lp50UddEzGkn3rba.svg" style="max-width:100%;" alt="asciicast" />
+</a>
+</details>
+
+
 
 
