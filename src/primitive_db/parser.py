@@ -1,7 +1,5 @@
 import shlex
 
-from .core import validate_value
-
 
 def parse_values(type_values: list[tuple]):
     """
@@ -42,3 +40,18 @@ def parse_set(set_str, table_meta):
     col = parts[0].lower()
     val = parts[2].strip("'\"")
     return {col: validate_value(val, table_meta[col])}
+
+
+def validate_value(value, typ):
+    """
+    Validate and convert value to type.
+    """
+    try:
+        if typ == 'int':
+            return int(value)
+        elif typ == 'str':
+            return str(value)
+        elif typ == 'bool':
+            return value.lower() in ['true', '1', 'yes', 'y']
+    except ValueError:
+        raise ValueError(f"Invalid value '{value}' for type '{typ}'")

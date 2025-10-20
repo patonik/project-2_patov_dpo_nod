@@ -38,6 +38,28 @@
 </a>
 </details>
 
+## Новые возможности (Шаг 4)
+
+- **Обработка ошибок**: Все операции базы данных теперь используют декоратор для централизованной обработки ошибок (файл не найден, неверная таблица/столбец, ошибки валидации).
+- **Подтверждение действий**: Опасные операции (`drop_table`, `delete`) запрашивают подтверждение (y/n).
+- **Логирование времени**: Операции `select` и `insert` показывают время выполнения.
+- **Кэширование**: Запросы `select` кэшируются для ускорения повторных вызовов.
+
+Пример использования:
+<details>
+<summary>Click to play the recording</summary>
+
+<a title="Labyrinth of Treasures Demo" href="https://asciinema.org/a/k0nxLYiiykd2e5fh9QGMi0Poa?autoplay=1" target="_blank">
+<img src="https://asciinema.org/a/k0nxLYiiykd2e5fh9QGMi0Poa.svg" style="max-width:100%;" alt="asciicast" />
+</a>
+</details>
+
+## Установка и запуск
+
+```bash
+make package-install
+make project
+```
 
 
 

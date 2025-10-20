@@ -1,7 +1,10 @@
 import json
 import os
 
+from .decorators import handle_db_errors
+
 DATA_DIR = 'data'
+
 
 def ensure_data_dir():
     """
@@ -10,6 +13,8 @@ def ensure_data_dir():
     if not os.path.exists(DATA_DIR):
         os.makedirs(DATA_DIR)
 
+
+@handle_db_errors
 def load_table_data(table_name):
     """
     Load table data from JSON. Return empty list if not found.
@@ -18,12 +23,11 @@ def load_table_data(table_name):
     filepath = os.path.join(DATA_DIR, f'{table_name}.json')
     if not os.path.exists(filepath):
         return []
-    try:
-        with open(filepath, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return []
+    with open(filepath, 'r') as f:
+        return json.load(f)
 
+
+@handle_db_errors
 def save_table_data(table_name, data):
     """
     Save table data to JSON.
@@ -34,20 +38,18 @@ def save_table_data(table_name, data):
         json.dump(data, f, indent=4)
 
 
-
+@handle_db_errors
 def load_metadata(filepath):
     """
     Load metadata from JSON file. Return empty dict if file not found.
     """
     if not os.path.exists(filepath):
-        return {}
-    try:
-        with open(filepath, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+        raise FileNotFoundError
+    with open(filepath, 'r') as f:
+        return json.load(f)
 
 
+@handle_db_errors
 def save_metadata(filepath, data):
     """
     Save data to JSON file.
